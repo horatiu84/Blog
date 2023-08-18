@@ -13,11 +13,9 @@ $sql = "SELECT *
 
 $results=$db->query($sql); 
 
-if ($results === false) {
-    $db->errorInfo();
-} else {
-    $articles=$results->fetchAll(PDO:FETCH_ASSOC);
-}
+
+$articles=$results->fetchAll(PDO::FETCH_ASSOC);
+
 
 
 
