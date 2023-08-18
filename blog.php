@@ -1,19 +1,22 @@
 <?php
-require './includes/dbcon.php';
+require './classes/Database.php';
 
 session_start();
 
-$db = dbConnect();
+$conn = new Database();
+
+$db = $conn->getConn();
 
 $sql = "SELECT *
         FROM articole
         ORDER BY id;";
 
-if (isset($db)) { // we can check to see if the db is set, if not we return empty array, so we won't have error
-    $results = mysqli_query($db, $sql);
-    $articles = mysqli_fetch_all($results, MYSQLI_ASSOC);
+$results=$db->query($sql); 
+
+if ($results === false) {
+    $db->errorInfo();
 } else {
-    $articles = [];
+    $articles=$results->fetchAll(PDO:FETCH_ASSOC);
 }
 
 
@@ -24,7 +27,7 @@ if (isset($db)) { // we can check to see if the db is set, if not we return empt
 <?php require './includes/header.php' ?>
 
 
-<?php if (isset($_SESSION['is_logged_in']) &&$_SESSION['is_logged_in']) : ?>
+<?php if (isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']) : ?>
     <p>You are logged in. <a href="logout.php">Log Out</a></p>
 <?php else : ?>
     <p>You are not logged in. <a href="login.php">Log in</a></p>
