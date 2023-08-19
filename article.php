@@ -1,27 +1,14 @@
 <?php
 
-require "./includes/dbcon.php";
-require "./includes/functions-article.php";
+require "./classes/Database.php";
+require "./classes/Article.php";
 
-$db = dbConnect();
+$conn = new Database();
+$db=$conn->getConn();
 
 if (isset($_GET['id'])) {
 
-
-
-    //     $sql = "SELECT *
-    //             FROM articole
-    //             WHERE id=".$_GET['id'];
-
-    //     $results = mysqli_query($db,$sql);
-
-    //     $article = mysqli_fetch_assoc($results);
-    // } else {
-    //     $article = null;
-    // } 
-    //we replace all this with a function
-
-    $article = getArticle($db, $_GET['id']);
+    $article = Article::getById($db,$_GET['id']);
 } else {
     $article = null;
 }
@@ -30,7 +17,7 @@ if (isset($_GET['id'])) {
 
 <h2>Article : </h2>
 <?php if (empty($article)) : ?>
-    <p>No articles in the database</p>
+    <p>No article found</p>
 <?php else : ?>
     <ul>
         <li>

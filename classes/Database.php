@@ -13,7 +13,8 @@ class Database
      *
      * @return PDO object Connection to the database server
      */
-    public function getConn() {
+    public function getConn(): PDO
+    {
         $db_host = 'localhost';
         $db_user = 'csm_hora';
         $db_pass = '4DWp5Z_-a/Nb!OGA';

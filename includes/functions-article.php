@@ -1,27 +1,32 @@
 <?php
-
+/**
+ * Get the article record based on the ID
+ *
+ * @param $db -connection to the database
+ * @param $id integer id of the article
+ * @param $column -Optional list of colums for te select,default to '*'
+ *
+ * @return mixed An associative array containing the article with that ID, or null if not found
+ */
 function getArticle($db, $id, $column = '*')
 {
     $sql = "SELECT $column 
             FROM articole
-            WHERE id = ?";
+            WHERE id = :id";
 
-    $stmt = mysqli_prepare($db, $sql);
+    $stmt = $db->prepare($sql);
     // var_dump($stmt);
-    if ($stmt === false) {
-        echo mysqli_error($db);
-    } else {
-        mysqli_stmt_bind_param($stmt, "i", $id);
-        if (mysqli_stmt_execute($stmt)) {
-            $result = mysqli_stmt_get_result($stmt);
 
-            return mysqli_fetch_array($result, MYSQLI_ASSOC);
+        $stmt->bindValue(':id',$id, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+           return $stmt->fetch(PDO::FETCH_ASSOC);
         }
-    }
-};
+
+}
 
 
-function validateArticle($title,$content,$published_at) {
+function validateArticle($title,$content): array
+{
    $errors = [];
 
     if ($title == '') {

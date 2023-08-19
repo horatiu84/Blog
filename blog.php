@@ -1,5 +1,6 @@
 <?php
 require './classes/Database.php';
+require './classes/Article.php';
 
 session_start();
 
@@ -7,19 +8,7 @@ $conn = new Database();
 
 $db = $conn->getConn();
 
-$sql = "SELECT *
-        FROM articole
-        ORDER BY id;";
-
-$results=$db->query($sql); 
-
-
-$articles=$results->fetchAll(PDO::FETCH_ASSOC);
-
-
-
-
-
+$articles = Article::getAll($db);
 ?>
 
 <?php require './includes/header.php' ?>
