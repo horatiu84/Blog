@@ -7,7 +7,7 @@ $conn = new Database();
 $db=$conn->getConn();
 
 if (isset($_GET['id'])) {
-
+// get the article based on the ID record
     $article = Article::getById($db,$_GET['id']);
 } else {
     $article = null;
@@ -22,11 +22,11 @@ if (isset($_GET['id'])) {
     <ul>
         <li>
             <article>
-                <h3> <?= htmlspecialchars($article['title'])  ?></h3>
-                <p><?= htmlspecialchars($article['content'])  ?></p>
+                <h3> <?= htmlspecialchars($article->title)  ?></h3>
+                <p><?= htmlspecialchars($article->content)  ?></p>
             </article>
         </li>
     </ul>
-    <a href="edit-article.php?id=<?= $article['id'] ?>">Edit</a>
-    <a href="delete-article.php?id=<?= $article['id'] ?>">Delete</a>
+    <a href="edit-article.php?id=<?= $article->id ?>">Edit</a>
+    <a href="delete-article.php?id=<?= $article->id?>">Delete</a>
 <?php endif ?>
