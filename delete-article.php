@@ -1,8 +1,6 @@
 <?php
 
-require "./classes/Database.php";
-require "./classes/Article.php";
-
+include_once './includes/autoloader.php';
 
 $conn = new Database();
 $db = $conn->getConn();
@@ -10,7 +8,6 @@ $db = $conn->getConn();
 if (isset($_GET['id'])) {
 
     $article = Article::getById($db,$_GET['id']);
-
     if (!$article) {
         die("Article not found");
     }

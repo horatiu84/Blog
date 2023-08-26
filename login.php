@@ -1,18 +1,16 @@
 <?php
 
-require 'classes/User.php';
-require 'classes/Database.php';
+include_once './includes/autoloader.php';
 
-session_start();
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn = new Database();
     $db = $conn->getConn();
 
     if (User::authenticate($db,$_POST['username'],$_POST['password'])) {
-        session_regenerate_id(true);
 
-        $_SESSION['is_logged_in'] = true;
+        Auth::login();
         header("Location: blog.php");
     } else {
         $error = 'login incorrect';

@@ -1,6 +1,11 @@
 <?php
 
-session_start();
+include_once './includes/autoloader.php';
 
-session_destroy();
+
+
+Auth::logout();
+
+
+
 header("Location: blog.php");

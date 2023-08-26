@@ -1,8 +1,8 @@
 <?php
-require "./classes/Database.php";
-require "./classes/Article.php";
+include_once './includes/autoloader.php';
 
-session_start();
+
+Auth::requireLogin();
 
 
 $article = new Article();
