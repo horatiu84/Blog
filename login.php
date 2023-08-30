@@ -23,6 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <h2>Login</h2>
 
+<?php if (isset($error)) : ?>
+<?= $error ?>
+    <?php endif; ?>
+
+
 <form method="post">
     <div>
         <label for="username">Username</label>

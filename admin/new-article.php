@@ -1,5 +1,5 @@
 <?php
-include_once './includes/autoloader.php';
+include_once '../includes/autoloader.php';
 
 
 Auth::requireLogin();
@@ -26,10 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-<?php require './includes/header.php' ?>
+<?php require '../includes/header.php' ?>
 
 <h2>New article</h2>
 
-<?php require './includes/article-form.php'; ?>
+<?php require 'includes/article-form.php'; ?>
 
-<?php require './includes/footer.php' ?>
+<?php require '../includes/footer.php' ?>

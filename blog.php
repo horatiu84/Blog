@@ -13,12 +13,7 @@ $articles = Article::getAll($db);
 <?php require './includes/header.php' ?>
 
 
-<?php if (Auth::isLoggedIn()) : ?>
-    <p>You are logged in. <a href="logout.php">Log Out</a></p>
-    <a href="new-article.php">Add a new article</a>
-<?php else : ?>
-    <p>You are not logged in. <a href="login.php">Log in</a></p>
-<?php endif ?>
+
 <h2>Articles : </h2>
 <?php if (empty($articles)) : ?>
     <p>No articles in the database</p>

@@ -1,7 +1,8 @@
 <?php
 
-include_once './includes/autoloader.php';
+include_once '../includes/autoloader.php';
 
+Auth::requireLogin();
 
 $conn = new Database();
 $db = $conn->getConn();
@@ -33,7 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 ?>
-<h2>Edit article</h2>
-<?php require './includes/article-form.php'; ?>
+<?php require '../includes/header.php'; ?>
 
-<?php require './includes/footer.php' ?>
+<h2>Edit article</h2>
+<?php require 'includes/article-form.php'; ?>
+
+<?php require '../includes/footer.php' ?>
